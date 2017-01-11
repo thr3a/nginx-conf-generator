@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test6</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/vue/1.0.27/vue.min.js"></script>
+  <style>
+  </style>
+</head>
+<body>
+  <div id="hoge">{{ message }}</div>
+<script>
+  (function () {
+    'use strict';
+
+    new Vue({
+      el: '#hoge',
+      data: function () {
+        return {
+          message: 'hello world'
+        };
+      }
+    })
+  })();
+</script>
+</body>
+</html>
