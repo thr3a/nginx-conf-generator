@@ -1,7 +1,7 @@
 <?php
 
-function h($str = ''){
-  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+function h($param = ''){
+  return filter_input(INPUT_GET, $param, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 function flag($param = ''){
@@ -18,8 +18,8 @@ $base = <<< EOL
     
 EOL;
 
-$base = str_replace("{{SERVER_NAME}}", h($_GET['server_name']), $base);
-$base = str_replace("{{ROOT_PATH}}", h($_GET['root_path']), $base);
+$base = str_replace("{{SERVER_NAME}}", h('server_name'), $base);
+$base = str_replace("{{ROOT_PATH}}", h('root_path'), $base);
 
 if (flag('ssl')) {
   $base = str_replace("{{PORT}}", '443', $base);
