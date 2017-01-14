@@ -73,7 +73,4 @@ $base .= <<< EOL
 EOL;
 }
 ?>
-<? if(flag('debug')): ?>
-  <?= '<pre>' ?>
-<? endif ?>
 <?= "server {\r$base\r}" ?>
