@@ -5,88 +5,47 @@
   <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>test6</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.bootcss.com/vue/1.0.27/vue.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <style>
-  </style>
+  <title>Nginx Config Generator</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet">
+  <script src="//cdn.bootcss.com/vue/1.0.27/vue.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="index.js"></script>
 </head>
 <body>
   <div class="container" id="myform">
+    <h1>Nginx Config Generator</h1>
     <div class="form-group">
       <label>ドメイン名</label>
-      <input type="text" class="form-control" placeholder="Example input" v-model="server_name">
+      <input type="text" class="form-control" placeholder="Example input" v-model="forms.server_name">
     </div>
     <div class="form-group">
       <label>ルートパス</label>
-      <input type="text" class="form-control" placeholder="Example input" v-model="root_path">
+      <input type="text" class="form-control" placeholder="Example input" v-model="forms.root_path">
     </div>
-    <div class="form-check">
+    <div class="form-check form-check-inline">
       <label>
-        <input type="checkbox" v-model="use_php">
-        PHP
+        <input type="checkbox" v-model="forms.use_php">
+        PHPを使う
       </label>
     </div>
-    <div class="form-check">
+    <div class="form-check form-check-inline">
       <label>
-        <input type="checkbox" v-model="use_ssl">
-        SSL
+        <input type="checkbox" v-model="forms.use_ssl">
+        SSLサーバー
       </label>
     </div>
-    <div class="form-check">
+    <div class="form-check form-check-inline">
       <label>
-        <input type="checkbox" v-model="security_header">
-        security_header
+        <input type="checkbox" v-model="forms.security_header">
+        セキュリティヘッダーをつける
       </label>
     </div>
-    <div class="form-check">
+    <div class="form-check form-check-inline">
       <label>
-        <input type="checkbox" v-model="big_data">
-        bigdata
+        <input type="checkbox" v-model="forms.big_data">
+        大きめのファイルを扱う
       </label>
     </div>
-
-    <button v-on:click="generate">生成！</button>
-    <textarea id="output" class="form-control" rows="20">{{ result }}</textarea>
+    <textarea class="form-control" rows="35">{{ result }}</textarea>
   </div>
-<script>
-  (function () {
-    'use strict';
-    var myform = new Vue({
-      el: '#myform',
-      data: {
-        server_name: "www.example.com",
-        root_path: "/var/www/html",
-        result: '',
-        use_php: true,
-        use_ssl: false
-      },
-      methods: {
-        generate: function(){
-          var _this = this;
-          $.ajax({
-            type: "GET",
-            url: 'genconfig.php',
-            data: {
-              server_name: _this.server_name,
-              root_path: _this.root_path,
-              ssl: _this.use_ssl,
-              php: _this.use_php,
-              security_header: _this.security_header,
-              big_data: _this.big_data
-            },
-            timeout: 3000
-          }).done(function(data){
-            _this.result = data;
-          }).fail(function(data){
-            console.log('error');
-          });
-          // console.log(this.result);
-        }
-      }
-    });
-  })();
-</script>
-</body>
 </html>

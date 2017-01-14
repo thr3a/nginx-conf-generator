@@ -14,7 +14,7 @@ $base = <<< EOL
   
   # Root Path
   root {{ROOT_PATH}};
-  index index.html index.php;
+  index {{INDEX}};
     
 EOL;
 
@@ -49,8 +49,10 @@ $base .= <<< EOL
   }
   
 EOL;
+  $base = str_replace("{{INDEX}}", 'index.html index.php', $base);
+}else {
+  $base = str_replace("{{INDEX}}", 'index.html', $base);
 }
-$a = filter_input(INPUT_GET, 'security_header', FILTER_VALIDATE_BOOLEAN);
 
 if (flag('security_header')) {
 $base .= <<< EOL
