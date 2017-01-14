@@ -40,4 +40,5 @@ $(function(){
   },{
     deep: true
   });
+  var clipboard = new Clipboard('.btn');
 });
